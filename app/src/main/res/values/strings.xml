@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DojoKotlin</string>
+    <string name="title_activity_list_members">ListMembersActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="members_text">Membros</string>
+    <string name="daily_text">Daily</string>
+    <string name="summary_text">Resumo</string>
+    <string name="config_text">Configuração</string>
 </resources>
