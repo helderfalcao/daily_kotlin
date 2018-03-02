@@ -3,7 +3,7 @@ package bgsong.com.br.dojokotlin
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
-import android.widget.Toast
+import bgsong.com.br.dojokotlin.model.Member
 import kotlinx.android.synthetic.main.activity_create_member.*
 
 class CreateMemberActivity : AppCompatActivity() {
@@ -29,5 +29,6 @@ class CreateMemberActivity : AppCompatActivity() {
         val role = spinner.selectedItem.toString()
 
         val member = Member(name, email, role)
+
     }
 }
