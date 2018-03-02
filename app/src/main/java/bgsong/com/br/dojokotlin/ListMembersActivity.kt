@@ -17,6 +17,10 @@ class ListMembersActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+        val fragment = ListMembersActivityFragment()
+        val fragTransaction = supportFragmentManager.beginTransaction()
+        fragTransaction.add(R.id.fragment, fragment)
+        fragTransaction.commit()
     }
 
 }

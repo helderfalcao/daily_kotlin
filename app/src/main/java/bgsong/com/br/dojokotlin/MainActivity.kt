@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun configListenerCreateMember() {
         members_list_button.setOnClickListener {
-            startActivity(Intent(this, CreateMemberActivity::class.java))
+            startActivity(Intent(this, ListMembersActivity::class.java))
         }
     }
 }
