@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_list_members.*
  */
 class ListMembersActivityFragment : Fragment() {
 
-    var listMembers = arrayOf("Juba","Nelson","Guilherme");
+    var listMembers = arrayOf("Juba", "Nelson", "Guilherme");
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
