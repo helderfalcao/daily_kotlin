@@ -8,13 +8,13 @@ import kotlinx.android.synthetic.main.activity_create_member.*
 
 class CreateMemberActivity : AppCompatActivity() {
 
-    var list_cargo = arrayOf("Desenvolvedor","SM","Arquiteto");
+    var list_cargo = arrayOf("Desenvolvedor", "SM", "Arquiteto", "QA")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_member)
 
-        val adapterCargo = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_cargo);
+        val adapterCargo = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_cargo)
         spinner.adapter = adapterCargo
 
         fabCreateMember.setOnClickListener {

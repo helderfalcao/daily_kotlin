@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_list_members.*
 /**
  * A placeholder fragment containing a simple view.
  */
-class ListMembersActivityFragment : Fragment() {
+class ListMembersFragment : Fragment() {
 
     val listMembers = arrayOf(Member("Nome", "", ""),
             Member("Gabriel", "", ""),
