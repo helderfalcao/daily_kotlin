@@ -6,21 +6,27 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
 import bgsong.com.br.dojokotlin.model.Member
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_create_member.*
 import org.json.JSONObject
 
 class CreateMemberActivity : AppCompatActivity() {
 
     val list_cargo = arrayOf("Desenvolvedor", "SM", "Arquiteto", "QA")
-    var membersList = ArrayList<Member>()
-    var prefs: SharedPreferences? = null
+    var membersList = HashMap<String, Member>()
+    lateinit var prefs: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_member)
 
         val adapterCargo = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_cargo)
         spinner.adapter = adapterCargo
-        prefs = getSharedPreferences(Constants.SHARED_KEY, 0);
+        prefs = getSharedPreferences(Constants.SHARED_KEY, 0)
+
+        // TODO Verificar se vai funcionar a conversão
+        val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "{}")
+        membersList = Gson().fromJson(membersListJson, HashMap<String, Member>()::class.java)
 
         fabCreateMember.setOnClickListener {
             createNewMember()
@@ -34,9 +40,9 @@ class CreateMemberActivity : AppCompatActivity() {
 
         val member = Member(name, email, role)
 
-        prefs.edit().putString(Constants.MEMBERS_KEY, Gson(member))
+        // TODO Adicionar o membro ao hashmap e slavar novamente no preferences
 
-        Constants.MEMBERS_KEY
-
+        prefs.edit().putString(Constants.MEMBERS_KEY, Gson().toJson(member))
+        prefs.edit().commit()
     }
 }
