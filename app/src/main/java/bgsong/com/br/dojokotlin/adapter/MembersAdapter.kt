@@ -3,6 +3,7 @@ package bgsong.com.br.dojokotlin.adapter
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.TextView
+import bgsong.com.br.dojokotlin.model.Member
 
 class MembersAdapter(val memberList: List<Member>)  : RecyclerView.Adapter<MembersAdapter.ViewHolder>(){
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
