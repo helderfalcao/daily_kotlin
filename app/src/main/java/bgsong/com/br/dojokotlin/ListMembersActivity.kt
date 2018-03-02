@@ -1,5 +1,6 @@
 package bgsong.com.br.dojokotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -13,10 +14,10 @@ class ListMembersActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list_members)
         setSupportActionBar(toolbar)
 
-        fabCreateMember.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+        fabCreateMember.setOnClickListener {
+            startActivity(Intent(this, ListMembersActivity::class.java))
         }
+
         val fragment = ListMembersActivityFragment()
         val fragTransaction = supportFragmentManager.beginTransaction()
         fragTransaction.add(R.id.fragment, fragment)

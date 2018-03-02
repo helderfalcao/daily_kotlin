@@ -11,8 +11,9 @@ class MembersAdapter(private val memberList: List<Member>,
                      private val context: Context) : RecyclerView.Adapter<MembersAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var member = memberList.get(position)
-        holder.memberName.text = member.name;
+        val member = memberList[position]
+
+        holder.memberName.text = member.name
     }
 
     override fun getItemCount(): Int {
@@ -22,11 +23,12 @@ class MembersAdapter(private val memberList: List<Member>,
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1,
                 parent, false)
+
         return ViewHolder(view.findViewById(android.R.id.text1))
     }
 
     class ViewHolder(memberViewHolder: TextView) : RecyclerView.ViewHolder(memberViewHolder) {
-        val memberName = memberViewHolder;
+        val memberName = memberViewHolder
     }
 
 }

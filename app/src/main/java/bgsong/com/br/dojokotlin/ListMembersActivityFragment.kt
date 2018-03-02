@@ -2,6 +2,7 @@ package bgsong.com.br.dojokotlin
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,18 +15,21 @@ import kotlinx.android.synthetic.main.fragment_list_members.*
  */
 class ListMembersActivityFragment : Fragment() {
 
-    var listMembers = arrayOf(Member("Nome", "", ""),
+    val listMembers = arrayOf(Member("Nome", "", ""),
             Member("Gabriel", "", ""),
-            Member("Juka", "", "")).toList();
+            Member("Juka", "", "")).toList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_list_members, container, false)
-        return view;
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        recyclerMember.layoutManager = LinearLayoutManager(activity)
         recyclerMember.adapter = MembersAdapter(listMembers, activity)
     }
 }

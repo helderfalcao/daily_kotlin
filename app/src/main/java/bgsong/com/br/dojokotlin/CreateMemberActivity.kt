@@ -15,8 +15,7 @@ class CreateMemberActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_member)
 
         val adapterCargo = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_cargo);
-        spinner!!.adapter = adapterCargo
-
+        spinner.adapter = adapterCargo
 
         fabCreateMember.setOnClickListener {
             createNewMember()
@@ -29,6 +28,5 @@ class CreateMemberActivity : AppCompatActivity() {
         val role = spinner.selectedItem.toString()
 
         val member = Member(name, email, role)
-
     }
 }
