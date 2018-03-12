@@ -1,5 +1,6 @@
 package bgsong.com.br.dojokotlin
 
+import android.app.Activity
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -27,7 +28,7 @@ class ListMembersFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_list_members, container, false)
-
+        prefs = activity.getPreferences(0)
         return view
     }
 
