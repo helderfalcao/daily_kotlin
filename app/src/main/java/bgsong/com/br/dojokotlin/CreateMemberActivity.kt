@@ -3,6 +3,7 @@ package bgsong.com.br.dojokotlin
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import bgsong.com.br.dojokotlin.model.Member
@@ -47,8 +48,9 @@ class CreateMemberActivity : AppCompatActivity() {
 
         // TODO Adicionar o membro ao hashmap e slavar novamente no preferences
 
+        val memberList = Gson().toJson(membersList)
+        Log.d("Gson: ", memberList)
         prefs.edit().putString(Constants.MEMBERS_KEY, Gson().toJson(membersList))
-
         createSucess = prefs.edit().commit()
         if (createSucess) {
             Toast.makeText(this,"Sucess",Toast.LENGTH_SHORT).show()
