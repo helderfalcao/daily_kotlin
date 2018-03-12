@@ -36,10 +36,16 @@ class ListMembersFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         recyclerMember.layoutManager = LinearLayoutManager(activity)
+        updateList()
 
-        // TODO Verificar se vai funcionar a conversão
+    }
+
+    fun updateList() {
+
         val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "[]")
         membersList = Gson().fromJson(membersListJson, object : TypeToken<List<Member>>() {}.type)
         recyclerMember.adapter = MembersAdapter(membersList, activity)
     }
+
+
 }
