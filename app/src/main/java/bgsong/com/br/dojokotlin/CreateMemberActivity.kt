@@ -15,7 +15,7 @@ class CreateMemberActivity : AppCompatActivity() {
     val list_cargo = arrayOf("Desenvolvedor", "SM", "Arquiteto", "QA")
     var membersList = HashMap<String, Member>()
     lateinit var prefs: SharedPreferences
-    lateinit var prefEditor: SharedPreferences.Editor!
+    lateinit var prefEditor: SharedPreferences.Editor
     var createSucess = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,10 +26,8 @@ class CreateMemberActivity : AppCompatActivity() {
                 android.R.layout.simple_spinner_item, list_cargo)
         spinner.adapter = adapterCargo
         prefs = getPreferences(0)
+        prefEditor = prefs.edit()
 
-        // TODO Verificar se vai funcionar a conversão
-        val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "{}")
-        membersList = Gson().fromJson(membersListJson, HashMap<String, Member>()::class.java)
 
         fabCreateMember.setOnClickListener {
             createNewMember()
@@ -46,20 +44,17 @@ class CreateMemberActivity : AppCompatActivity() {
         val member = Member(name, email, role)
         membersList.put(member.email, member)
 
-        // TODO Adicionar o membro ao hashmap e slavar novamente no preferences
-
         val memberList = Gson().toJson(membersList)
         Log.d("Gson: ", memberList)
-        var prefEditor = prefs.edit()
+
         prefEditor.putString(Constants.MEMBERS_KEY, Gson().toJson(membersList))
-        createSucess = prefs.edit().commit()
+        createSucess = prefEditor.commit()
         if (createSucess) {
             Toast.makeText(this,"Sucess",Toast.LENGTH_SHORT).show()
+            finish()
         }
         else {
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
-
-        //TODO mensagem de sucesso
     }
 }
