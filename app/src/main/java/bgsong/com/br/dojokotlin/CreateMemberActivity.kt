@@ -30,6 +30,8 @@ class CreateMemberActivity : AppCompatActivity() {
 
         fabCreateMember.setOnClickListener {
             createNewMember()
+
+            //TODO tratamento os campos
         }
     }
 
@@ -39,10 +41,14 @@ class CreateMemberActivity : AppCompatActivity() {
         val role = spinner.selectedItem.toString()
 
         val member = Member(name, email, role)
+        membersList.put(member.email, member)
 
         // TODO Adicionar o membro ao hashmap e slavar novamente no preferences
 
-        prefs.edit().putString(Constants.MEMBERS_KEY, Gson().toJson(member))
+        prefs.edit().putString(Constants.MEMBERS_KEY, Gson().toJson(membersList))
         prefs.edit().commit()
+        prefs.edit().apply()
+
+        //TODO mensagem de sucesso
     }
 }
