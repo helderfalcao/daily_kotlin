@@ -25,7 +25,7 @@ class CreateMemberActivity : AppCompatActivity() {
         val adapterCargo = ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, list_cargo)
         spinner.adapter = adapterCargo
-        prefs = getPreferences(0)
+        prefs = getSharedPreferences(Constants.SHARED_KEY, 0)
         prefEditor = prefs.edit()
         val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "{}")
         membersList = Gson().fromJson(membersListJson, HashMap<String, Member>()::class.java)
