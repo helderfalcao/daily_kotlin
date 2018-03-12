@@ -41,7 +41,7 @@ class ListMembersFragment : Fragment() {
         val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "{}")
         membersList = Gson().fromJson(membersListJson, HashMap<String, Member>()::class.java)
 
-        var members = ArrayList<Member>(membersList.values)
+        val members = ArrayList<Member>(membersList.values)
 
         recyclerMember.adapter = MembersAdapter(members, activity)
     }

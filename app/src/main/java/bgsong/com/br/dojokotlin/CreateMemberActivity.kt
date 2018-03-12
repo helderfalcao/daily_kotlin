@@ -27,7 +27,8 @@ class CreateMemberActivity : AppCompatActivity() {
         spinner.adapter = adapterCargo
         prefs = getPreferences(0)
         prefEditor = prefs.edit()
-
+        val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "{}")
+        membersList = Gson().fromJson(membersListJson, HashMap<String, Member>()::class.java)
 
         fabCreateMember.setOnClickListener {
             createNewMember()
