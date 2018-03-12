@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import bgsong.com.br.dojokotlin.model.Member
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -15,6 +16,7 @@ class CreateMemberActivity : AppCompatActivity() {
     val list_cargo = arrayOf("Desenvolvedor", "SM", "Arquiteto", "QA")
     var membersList = HashMap<String, Member>()
     lateinit var prefs: SharedPreferences
+    var createSucess = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +48,14 @@ class CreateMemberActivity : AppCompatActivity() {
         // TODO Adicionar o membro ao hashmap e slavar novamente no preferences
 
         prefs.edit().putString(Constants.MEMBERS_KEY, Gson().toJson(membersList))
-        prefs.edit().commit()
-        prefs.edit().apply()
+
+        createSucess = prefs.edit().commit()
+        if (createSucess) {
+            Toast.makeText(this,"Sucess",Toast.LENGTH_SHORT).show()
+        }
+        else {
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+        }
 
         //TODO mensagem de sucesso
     }
