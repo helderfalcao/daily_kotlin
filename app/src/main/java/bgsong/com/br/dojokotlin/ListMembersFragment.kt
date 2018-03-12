@@ -1,5 +1,6 @@
 package bgsong.com.br.dojokotlin
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -37,14 +38,19 @@ class ListMembersFragment : Fragment() {
 
         recyclerMember.layoutManager = LinearLayoutManager(activity)
         updateList()
-
     }
 
     fun updateList() {
-
         val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "[]")
         membersList = Gson().fromJson(membersListJson, object : TypeToken<List<Member>>() {}.type)
-        recyclerMember.adapter = MembersAdapter(membersList, activity)
+        recyclerMember.adapter = MembersAdapter(membersList, activity) {
+
+            // TODO: https://medium.com/@workingkills/p-s-android-intent-bundle-extras-in-kotlin-55ddd0e3fbf0
+            // TODO: achar melhor forma nesse link acima
+            val intent = Intent(activity, ListMembersActivity::class.java)
+            intent.extras.putString(Constants.MEMBERS_ID_KEY, it.email)
+            startActivity(intent)
+        }
     }
 
 

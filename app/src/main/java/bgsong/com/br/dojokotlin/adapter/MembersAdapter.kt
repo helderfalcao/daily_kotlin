@@ -8,7 +8,8 @@ import android.widget.TextView
 import bgsong.com.br.dojokotlin.model.Member
 
 class MembersAdapter(private val memberList: List<Member>,
-                     private val context: Context) : RecyclerView.Adapter<MembersAdapter.ViewHolder>() {
+                     private val context: Context,
+                     private val listener: (Member) -> Unit) : RecyclerView.Adapter<MembersAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val member = memberList[position]
@@ -27,6 +28,7 @@ class MembersAdapter(private val memberList: List<Member>,
 
         holder.listen { pos, type ->
             val item = memberList[pos]
+            listener(item)
         }
 
         return holder
@@ -42,9 +44,4 @@ class MembersAdapter(private val memberList: List<Member>,
         }
         return this
     }
-
-    interface OnClickMember{
-
-    }
-
 }
