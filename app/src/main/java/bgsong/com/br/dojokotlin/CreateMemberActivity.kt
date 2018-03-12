@@ -8,12 +8,13 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import bgsong.com.br.dojokotlin.model.Member
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_create_member.*
 
 class CreateMemberActivity : AppCompatActivity() {
 
     val list_cargo = arrayOf("Desenvolvedor", "SM", "Arquiteto", "QA")
-    var membersList = HashMap<String, Member>()
+    var membersList = ArrayList<Member>()
     lateinit var prefs: SharedPreferences
     lateinit var prefEditor: SharedPreferences.Editor
     var createSucess = false
@@ -27,8 +28,8 @@ class CreateMemberActivity : AppCompatActivity() {
         spinner.adapter = adapterCargo
         prefs = getSharedPreferences(Constants.SHARED_KEY, 0)
         prefEditor = prefs.edit()
-        val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "{}")
-        membersList = Gson().fromJson(membersListJson, HashMap<String, Member>()::class.java)
+        val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "[]")
+        membersList = Gson().fromJson(membersListJson, object : TypeToken<List<Member>>() {}.type)
 
         fabCreateMember.setOnClickListener {
             createNewMember()
@@ -43,7 +44,7 @@ class CreateMemberActivity : AppCompatActivity() {
         val role = spinner.selectedItem.toString()
 
         val member = Member(name, email, role)
-        membersList.put(member.email, member)
+        membersList.add(member)
 
         val memberList = Gson().toJson(membersList)
         Log.d("Gson: ", memberList)

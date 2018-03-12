@@ -1,6 +1,5 @@
 package bgsong.com.br.dojokotlin
 
-import android.app.Activity
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,6 +11,7 @@ import bgsong.com.br.dojokotlin.adapter.MembersAdapter
 import bgsong.com.br.dojokotlin.model.Member
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_list_members.*
+import com.google.gson.reflect.TypeToken
 
 /**
  * A placeholder fragment containing a simple view.
@@ -22,7 +22,7 @@ class ListMembersFragment : Fragment() {
 //            Member("Gabriel", "", ""),
 //            Member("Juka", "", "")).toList()
 
-    var membersList = HashMap<String, Member>()
+    var membersList = ArrayList<Member>()
     lateinit var prefs: SharedPreferences
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,14 +38,8 @@ class ListMembersFragment : Fragment() {
         recyclerMember.layoutManager = LinearLayoutManager(activity)
 
         // TODO Verificar se vai funcionar a conversão
-        val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "{}")
-        membersList = Gson().fromJson(membersListJson, HashMap<String, Member>()::class.java)
-
-        val members = ArrayList<Member>()
-        membersList.keys.forEach({
-            members.add(membersList.getValue(it))
-        })
-
-        recyclerMember.adapter = MembersAdapter(members, activity)
+        val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "[]")
+        membersList = Gson().fromJson(membersListJson, object : TypeToken<List<Member>>() {}.type)
+        recyclerMember.adapter = MembersAdapter(membersList, activity)
     }
 }
