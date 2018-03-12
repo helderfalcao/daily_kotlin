@@ -8,24 +8,24 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import bgsong.com.br.dojokotlin.model.Member
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_create_member.*
-import org.json.JSONObject
 
 class CreateMemberActivity : AppCompatActivity() {
 
     val list_cargo = arrayOf("Desenvolvedor", "SM", "Arquiteto", "QA")
     var membersList = HashMap<String, Member>()
     lateinit var prefs: SharedPreferences
+    lateinit var prefEditor: SharedPreferences.Editor!
     var createSucess = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_member)
 
-        val adapterCargo = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_cargo)
+        val adapterCargo = ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, list_cargo)
         spinner.adapter = adapterCargo
-        prefs = getSharedPreferences(Constants.SHARED_KEY, 0)
+        prefs = getPreferences(0)
 
         // TODO Verificar se vai funcionar a conversão
         val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "{}")
@@ -50,7 +50,8 @@ class CreateMemberActivity : AppCompatActivity() {
 
         val memberList = Gson().toJson(membersList)
         Log.d("Gson: ", memberList)
-        prefs.edit().putString(Constants.MEMBERS_KEY, Gson().toJson(membersList))
+        var prefEditor = prefs.edit()
+        prefEditor.putString(Constants.MEMBERS_KEY, Gson().toJson(membersList))
         createSucess = prefs.edit().commit()
         if (createSucess) {
             Toast.makeText(this,"Sucess",Toast.LENGTH_SHORT).show()
