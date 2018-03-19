@@ -57,8 +57,8 @@ class CreateMemberActivity : AppCompatActivity() {
         val member = Member(name, email, role)
 
         if(!isMemberUnique(email)) {
-            editEmail.setError("Email já cadastrado")
-            return;
+            editEmail.error = "Email já cadastrado"
+            return
         }
         membersList.add(member)
 

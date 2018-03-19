@@ -11,17 +11,13 @@ import android.view.ViewGroup
 import bgsong.com.br.dojokotlin.adapter.MembersAdapter
 import bgsong.com.br.dojokotlin.model.Member
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_list_members.*
 import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.fragment_list_members.*
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class ListMembersFragment : Fragment() {
-
-//    val listMembers = arrayOf(Member("Nome", "", ""),
-//            Member("Gabriel", "", ""),
-//            Member("Juka", "", "")).toList()
 
     var membersList = ArrayList<Member>()
     lateinit var prefs: SharedPreferences
@@ -47,10 +43,9 @@ class ListMembersFragment : Fragment() {
         recyclerMember.adapter = MembersAdapter(membersList, activity) {
             val intent = Intent(activity, CreateMemberActivity::class.java)
             intent.putExtra(Constants.MEMBER_EMAIL, it.email)
-            startActivity(intent)
+
+            activity.startActivityForResult(intent, Constants.MEMBER_ADD_SUCESS)
         }
     }
-
-
 
 }

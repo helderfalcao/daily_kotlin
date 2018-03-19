@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.fragment_list_members.*
 
 class ListMembersActivity : AppCompatActivity() {
 
-    lateinit var fragment : ListMembersFragment
+    lateinit var fragment: ListMembersFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +16,8 @@ class ListMembersActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fabCreateMember.setOnClickListener {
-            startActivityForResult(Intent(this, CreateMemberActivity::class.java),Constants.MEMBER_ADD_SUCESS)
+            startActivityForResult(Intent(this, CreateMemberActivity::class.java),
+                    Constants.MEMBER_ADD_SUCESS)
         }
 
         fragment = ListMembersFragment()
