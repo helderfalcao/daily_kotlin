@@ -35,7 +35,7 @@ class CreateMemberActivity : AppCompatActivity() {
             createNewMember()
         }
 
-        if(intent != null && intent.hasExtra(Constants.MEMBER_EMAIL)) {
+        if (intent != null && intent.hasExtra(Constants.MEMBER_EMAIL)) {
             val memberEmail = intent.getStringExtra(Constants.MEMBER_EMAIL)
 
             val member = membersList.filter { it.email == memberEmail }[0]
@@ -55,6 +55,11 @@ class CreateMemberActivity : AppCompatActivity() {
         val role = spinner.selectedItem.toString()
 
         val member = Member(name, email, role)
+
+        if(!isMemberUnique(email)) {
+            editEmail.setError("Email já cadastrado")
+            return;
+        }
         membersList.add(member)
 
         val memberList = Gson().toJson(membersList)
@@ -63,11 +68,14 @@ class CreateMemberActivity : AppCompatActivity() {
         prefEditor.putString(Constants.MEMBERS_KEY, Gson().toJson(membersList))
         createSucess = prefEditor.commit()
         if (createSucess) {
-            Toast.makeText(this,"Sucess",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Sucess", Toast.LENGTH_SHORT).show()
             finish()
-        }
-        else {
+        } else {
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun isMemberUnique(email: String) = membersList
+            .filter { it.email == email }.isEmpty()
+
 }
