@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import bgsong.com.br.dojokotlin.model.Member
@@ -75,6 +76,19 @@ class CreateMemberActivity : AppCompatActivity() {
         }
     }
 
+    fun deleteMember (view: View) {
+        val memberList = Gson().toJson(membersList)
+        Log.d("Gson: ", memberList)
+
+        prefEditor.putString(Constants.MEMBERS_KEY, Gson().toJson(membersList))
+        createSucess = prefEditor.commit()
+        if (createSucess) {
+            Toast.makeText(this, "Sucess", Toast.LENGTH_SHORT).show()
+            finish()
+        } else {
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+        }
+    }
     private fun isMemberUnique(email: String) = membersList
             .filter { it.email == email }.isEmpty()
 
