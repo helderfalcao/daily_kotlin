@@ -36,15 +36,14 @@ class CreateMemberActivity : AppCompatActivity() {
         }
 
         if(intent != null && intent.hasExtra(Constants.MEMBER_EMAIL)) {
-            val memberEmail = intent.getStringExtra(Constants.MEMBER_EMAIL);
+            val memberEmail = intent.getStringExtra(Constants.MEMBER_EMAIL)
 
-            for(member in membersList) {
-                if(member.email == memberEmail) {
+            val member = membersList.filter { it.email == memberEmail }[0]
 
+            editName.setText(member.name)
+            editEmail.setText(member.email)
 
-                    break
-                }
-            }
+            val roleIndex = membersList.filter { it.role == member.role }
         }
     }
 
