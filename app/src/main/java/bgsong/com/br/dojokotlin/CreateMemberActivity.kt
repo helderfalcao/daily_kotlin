@@ -39,11 +39,13 @@ class CreateMemberActivity : AppCompatActivity() {
             val memberEmail = intent.getStringExtra(Constants.MEMBER_EMAIL)
 
             val member = membersList.filter { it.email == memberEmail }[0]
+            membersList = membersList.filter { it.email != memberEmail } as ArrayList<Member>
 
             editName.setText(member.name)
             editEmail.setText(member.email)
 
-            val roleIndex = membersList.filter { it.role == member.role }
+            val roleIndex = adapterCargo.getPosition(member.role)
+            spinner.setSelection(roleIndex)
         }
     }
 
