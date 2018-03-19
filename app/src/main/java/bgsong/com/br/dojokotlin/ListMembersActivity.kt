@@ -26,7 +26,6 @@ class ListMembersActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
         if (requestCode == Constants.MEMBER_ADD_SUCESS) {
             fragment.updateList()
         }

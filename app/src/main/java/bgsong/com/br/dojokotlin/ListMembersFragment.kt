@@ -43,10 +43,8 @@ class ListMembersFragment : Fragment() {
     fun updateList() {
         val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "[]")
         membersList = Gson().fromJson(membersListJson, object : TypeToken<List<Member>>() {}.type)
-        recyclerMember.adapter = MembersAdapter(membersList, activity) {
 
-            // TODO: https://medium.com/@workingkills/p-s-android-intent-bundle-extras-in-kotlin-55ddd0e3fbf0
-            // TODO: achar melhor forma nesse link acima
+        recyclerMember.adapter = MembersAdapter(membersList, activity) {
             val intent = Intent(activity, CreateMemberActivity::class.java)
             intent.putExtra(Constants.MEMBER_EMAIL, it.email)
             startActivity(intent)
