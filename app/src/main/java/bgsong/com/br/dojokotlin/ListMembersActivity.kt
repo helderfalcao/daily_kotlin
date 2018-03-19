@@ -23,7 +23,6 @@ class ListMembersActivity : AppCompatActivity() {
         val fragTransaction = supportFragmentManager.beginTransaction()
         fragTransaction.add(R.id.fragment, fragment)
         fragTransaction.commit()
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

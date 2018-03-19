@@ -33,8 +33,18 @@ class CreateMemberActivity : AppCompatActivity() {
 
         fabCreateMember.setOnClickListener {
             createNewMember()
+        }
 
-            //TODO tratamento os campos
+        if(intent != null && intent.hasExtra(Constants.MEMBER_EMAIL)) {
+            val memberEmail = intent.getStringExtra(Constants.MEMBER_EMAIL);
+
+            for(member in membersList) {
+                if(member.email == memberEmail) {
+
+
+                    break
+                }
+            }
         }
     }
 

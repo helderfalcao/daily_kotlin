@@ -47,8 +47,8 @@ class ListMembersFragment : Fragment() {
 
             // TODO: https://medium.com/@workingkills/p-s-android-intent-bundle-extras-in-kotlin-55ddd0e3fbf0
             // TODO: achar melhor forma nesse link acima
-            val intent = Intent(activity, ListMembersActivity::class.java)
-            intent.extras.putString(Constants.MEMBERS_ID_KEY, it.email)
+            val intent = Intent(activity, CreateMemberActivity::class.java)
+            intent.putExtra(Constants.MEMBER_EMAIL, it.email)
             startActivity(intent)
         }
     }
