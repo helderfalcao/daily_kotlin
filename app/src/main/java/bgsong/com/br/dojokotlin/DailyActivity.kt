@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken
 
 class DailyActivity : AppCompatActivity() {
     var membersList = ArrayList<Member>()
+    lateinit var devList: List<Member>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +18,8 @@ class DailyActivity : AppCompatActivity() {
 
         membersList = MemberUtils.getMembersList(this) as ArrayList<Member>
 
-        membersList.filter { it.role == Constants.DEVELOPER }
+        devList = membersList.filter { it.role == Constants.DEVELOPER || it.role == Constants.QA }
+
 
     }
 }
