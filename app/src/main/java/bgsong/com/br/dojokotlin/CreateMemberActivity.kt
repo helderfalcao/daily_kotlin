@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_create_member.*
 
 class CreateMemberActivity : AppCompatActivity() {
 
-    val list_cargo = arrayOf("Desenvolvedor", "SM", "Arquiteto", "QA")
+    val list_cargo = arrayOf(Constants.DEVELOPER, Constants.SM, Constants.ARCHITECT, Constants.QA)
     var membersList = ArrayList<Member>()
     lateinit var prefs: SharedPreferences
     lateinit var prefEditor: SharedPreferences.Editor

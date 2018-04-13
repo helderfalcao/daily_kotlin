@@ -7,5 +7,9 @@ class Constants {
         const val MEMBER_ADD_SUCESS = 200
         const val MEMBERS_ID_KEY = "member_id"
         const val MEMBER_EMAIL = "member_email"
+        const val DEVELOPER = "Desenvolvedor"
+        const val SM = "Scrum Master"
+        const val QA = "Tester"
+        const val ARCHITECT = "Arquiteto"
     }
 }
