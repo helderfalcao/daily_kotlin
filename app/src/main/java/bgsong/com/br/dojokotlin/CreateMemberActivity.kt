@@ -32,7 +32,7 @@ class CreateMemberActivity : AppCompatActivity() {
         val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "[]")
         membersList = Gson().fromJson(membersListJson, object : TypeToken<List<Member>>() {}.type)
 
-        fabCreateMember.setOnClickListener {
+        createButton.setOnClickListener {
             createNewMember()
         }
 
@@ -47,6 +47,8 @@ class CreateMemberActivity : AppCompatActivity() {
 
             val roleIndex = adapterCargo.getPosition(member.role)
             spinner.setSelection(roleIndex)
+        } else {
+            deleteButton.visibility = View.GONE
         }
     }
 

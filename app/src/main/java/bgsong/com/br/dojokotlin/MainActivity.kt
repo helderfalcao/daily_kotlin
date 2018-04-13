@@ -21,5 +21,8 @@ class MainActivity : AppCompatActivity() {
         members_list_button.setOnClickListener {
             startActivity(Intent(this, ListMembersActivity::class.java))
         }
+        dailyButton.setOnClickListener {
+            startActivity(Intent(this, DailyActivity::class.java))
+        }
     }
 }

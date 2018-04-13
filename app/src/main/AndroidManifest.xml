@@ -22,7 +22,8 @@
             android:name=".ListMembersActivity"
             android:label="@string/title_activity_list_members"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CreateMemberActivity"></activity>
+        <activity android:name=".CreateMemberActivity" />
+        <activity android:name=".DailyActivity"></activity>
     </application>
 
 </manifest>
