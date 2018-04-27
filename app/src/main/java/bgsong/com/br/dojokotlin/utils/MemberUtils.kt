@@ -16,7 +16,9 @@ class MemberUtils {
         }
 
         //TODO verificar devList
-        @JvmStatic fun getDevList
+        @JvmStatic fun getDevList (list: List<Member>): Boolean {
+            return list.filter { it.role == Constants.DEVELOPER || it.role == Constants.QA }.isNotEmpty()
+        }
 
         //TODO verificar SM
         //TODO verificar arquiteto
