@@ -1,6 +1,5 @@
 package bgsong.com.br.dojokotlin
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -8,7 +7,6 @@ import bgsong.com.br.dojokotlin.adapter.MembersAdapter
 import bgsong.com.br.dojokotlin.model.Member
 import bgsong.com.br.dojokotlin.utils.MemberUtils
 import kotlinx.android.synthetic.main.activity_daily.*
-import kotlinx.android.synthetic.main.fragment_list_members.*
 import java.util.*
 
 class DailyActivity : AppCompatActivity() {
@@ -30,15 +28,15 @@ class DailyActivity : AppCompatActivity() {
         arqMember = membersList.filter { it.role == Constants.ARCHITECT }.first()
 
         val shuffledList = devList.shuffled().toMutableList()
-
+        shuffledList.add(arqMember)
+        shuffledList.add(smMember)
 
         initUsersList(shuffledList)
     }
 
-    fun initUsersList() {
+    fun initUsersList(shuffledList: MutableList<Member>) {
         sortedList.layoutManager = LinearLayoutManager(this)
 
-        recyclerMember.adapter = MembersAdapter(membersList, this) {}
-
+        sortedList.adapter = MembersAdapter(shuffledList, this) {}
     }
 }
