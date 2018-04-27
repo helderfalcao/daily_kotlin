@@ -14,5 +14,15 @@ class MemberUtils {
             val membersListJson = prefs.getString(Constants.MEMBERS_KEY, "[]")
             return Gson().fromJson(membersListJson, object : TypeToken<List<Member>>() {}.type)
         }
+
+        //TODO verificar devList
+        @JvmStatic fun getDevList
+
+        //TODO verificar SM
+        //TODO verificar arquiteto
     }
+
+
+
+
 }
