@@ -10,6 +10,7 @@
     <string name="developer_or_qa">dev ou QA </string>
     <string name="sm">SM</string>
     <string name="architect">Arquiteto</string>
+    <string name="bt_next">Próximo</string>
 
-    
+
 </resources>
