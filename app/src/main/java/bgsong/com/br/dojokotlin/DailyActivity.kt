@@ -1,12 +1,14 @@
 package bgsong.com.br.dojokotlin
 
-import android.content.SharedPreferences
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import bgsong.com.br.dojokotlin.adapter.MembersAdapter
 import bgsong.com.br.dojokotlin.model.Member
 import bgsong.com.br.dojokotlin.utils.MemberUtils
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.activity_daily.*
+import kotlinx.android.synthetic.main.fragment_list_members.*
 import java.util.*
 
 class DailyActivity : AppCompatActivity() {
@@ -23,10 +25,20 @@ class DailyActivity : AppCompatActivity() {
 
         devList = membersList.filter { it.role == Constants.DEVELOPER || it.role == Constants.QA }.toMutableList()
 
-        smMember = membersList.filter { it.role == Constants.SM}.first()
+        smMember = membersList.filter { it.role == Constants.SM }.first()
 
         arqMember = membersList.filter { it.role == Constants.ARCHITECT }.first()
 
-        devList.shuffled()
+        val shuffledList = devList.shuffled().toMutableList()
+
+
+        initUsersList(shuffledList)
+    }
+
+    fun initUsersList() {
+        sortedList.layoutManager = LinearLayoutManager(this)
+
+        recyclerMember.adapter = MembersAdapter(membersList, this) {}
+
     }
 }
