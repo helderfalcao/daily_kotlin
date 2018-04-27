@@ -11,7 +11,7 @@ import java.util.*
 
 class DailyActivity : AppCompatActivity() {
     var membersList = ArrayList<Member>()
-    lateinit var devList: List<Member>
+    lateinit var devList: MutableList<Member>
     lateinit var smMember: Member
     lateinit var arqMember: Member
 
@@ -21,14 +21,12 @@ class DailyActivity : AppCompatActivity() {
 
         membersList = MemberUtils.getMembersList(this) as ArrayList<Member>
 
-        devList = membersList.filter { it.role == Constants.DEVELOPER || it.role == Constants.QA }
+        devList = membersList.filter { it.role == Constants.DEVELOPER || it.role == Constants.QA }.toMutableList()
 
         smMember = membersList.filter { it.role == Constants.SM}.first()
 
         arqMember = membersList.filter { it.role == Constants.ARCHITECT }.first()
 
-
-
-
+        devList.shuffled()
     }
 }
