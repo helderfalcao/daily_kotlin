@@ -15,15 +15,15 @@ class MemberUtils {
             return Gson().fromJson(membersListJson, object : TypeToken<List<Member>>() {}.type)
         }
 
-        @JvmStatic fun getDevList (list: List<Member>): Boolean {
+        @JvmStatic fun hasDevOrQa (list: List<Member>): Boolean {
             return list.filter { it.role == Constants.DEVELOPER || it.role == Constants.QA }.isNotEmpty()
         }
 
-        @JvmStatic fun getSMList (list: List<Member>): Boolean {
+        @JvmStatic fun hasSm (list: List<Member>): Boolean {
             return list.filter { it.role == Constants.SM }.isNotEmpty()
         }
 
-        @JvmStatic fun getArqList (list: List<Member>): Boolean {
+        @JvmStatic fun hasArchitect (list: List<Member>): Boolean {
             return list.filter { it.role == Constants.ARCHITECT}.isNotEmpty()
         }
     }

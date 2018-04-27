@@ -21,15 +21,35 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ListMembersActivity::class.java))
         }
         dailyButton.setOnClickListener {
-            if (MemberUtils.getDevList(MemberUtils.getMembersList(this))) {
+
+            if (MemberUtils.hasDevOrQa(MemberUtils.getMembersList(this))) {
                 Toast.makeText(this, "Nenhum dev ou QA inserido", Toast.LENGTH_LONG).show()
-            } else if (MemberUtils.getArqList(MemberUtils.getMembersList(this))) {
+            } else if (MemberUtils.hasArchitect(MemberUtils.getMembersList(this))) {
                 Toast.makeText(this, "Nenhum Arquiteto inserido", Toast.LENGTH_LONG).show()
-            } else if (MemberUtils.getSMList(MemberUtils.getMembersList(this))) {
+            } else if (MemberUtils.hasSm(MemberUtils.getMembersList(this))) {
                 Toast.makeText(this, "Nenhum SM inserido", Toast.LENGTH_LONG).show()
             } else {
                 startActivity(Intent(this, DailyActivity::class.java))
             }
         }
+    }
+
+    private fun isValidList(): Boolean {
+        var isValid = true
+        var errorMessage : String
+        var memberList = MemberUtils.getMembersList(this)
+        if (!MemberUtils.hasDevOrQa(memberList)) {
+            errorMessage = getString(R.string.none_role_inserted,
+                    getString(R.string.developer_or_qa))
+            isValid = false
+        } else if (MemberUtils.hasArchitect(memberList)) {
+            errorMessage = getString(R.string.none_role_inserted,
+                    getString(R.string.architect))
+        } else if (MemberUtils.hasSm(MemberUtils.getMembersList(this))) {
+            Toast.makeText(this, "Nenhum SM inserido", Toast.LENGTH_LONG).show()
+        } else {
+            startActivity(Intent(this, DailyActivity::class.java))
+        }
+        return isValid;
     }
 }

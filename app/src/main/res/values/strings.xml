@@ -6,4 +6,10 @@
     <string name="daily_text">Daily</string>
     <string name="summary_text">Resumo</string>
     <string name="config_text">Configuração</string>
+    <string name="none_role_inserted">Nenhum %1$s inserido</string>
+    <string name="developer_or_qa">dev ou QA </string>
+    <string name="sm">SM</string>
+    <string name="architect">Arquiteto</string>
+
+    
 </resources>
