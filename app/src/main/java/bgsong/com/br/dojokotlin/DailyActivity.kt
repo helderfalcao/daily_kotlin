@@ -7,10 +7,13 @@ import bgsong.com.br.dojokotlin.model.Member
 import bgsong.com.br.dojokotlin.utils.MemberUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.util.*
 
 class DailyActivity : AppCompatActivity() {
     var membersList = ArrayList<Member>()
     lateinit var devList: List<Member>
+    lateinit var smMember: Member
+    lateinit var arqMember: Member
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +22,12 @@ class DailyActivity : AppCompatActivity() {
         membersList = MemberUtils.getMembersList(this) as ArrayList<Member>
 
         devList = membersList.filter { it.role == Constants.DEVELOPER || it.role == Constants.QA }
+
+        smMember = membersList.filter { it.role == Constants.SM}.first()
+
+        arqMember = membersList.filter { it.role == Constants.ARCHITECT }.first()
+
+
 
 
     }
